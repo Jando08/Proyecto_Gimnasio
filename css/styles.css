@@ -256,6 +256,7 @@ span {
     margin-bottom: 2rem;
     animation: fadeInUp 1s ease 0.2s;
     animation-fill-mode: both;
+    color: #ffffff;
 }
 
 
@@ -404,6 +405,106 @@ span {
     font-size: 0.9rem;
 }
 
+/* ================================
+   MEMBRESIAS
+   ================================ */
+.membresias-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(280px, 450px));
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.membresia-card {
+    background-color: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    position: relative;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.membresia-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 243, 255, 0.15);
+    border-color: rgba(0, 243, 255, 0.3);
+    z-index: 10;
+}
+
+.membresia-card.popular {
+    border-color: var(--primary-color);
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(0, 243, 255, 0.1);
+}
+
+.membresia-card.popular:hover {
+    transform: scale(1.05) translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 243, 255, 0.3);
+}
+
+.membresia-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary-color);
+    color: #000;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 15px rgba(0, 243, 255, 0.4);
+}
+
+.membresia-header {
+    margin-bottom: 2rem;
+}
+
+.membresia-header h3 {
+    font-size: 1.5rem;
+    color: var(--text-main);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+.membresia-header .precio {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    line-height: 1;
+}
+
+.membresia-header .precio span {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+.membresia-features {
+    text-align: left;
+    margin-bottom: 2.5rem;
+    flex-grow: 1;
+}
+
+.membresia-features li {
+    margin-bottom: 1rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.membresia-features li:last-child {
+    margin-bottom: 0;
+}
 
 .schedule-table-container {
     overflow-x: auto;
@@ -625,7 +726,7 @@ span {
 
 
 @media (max-width: 992px) {
-    .about-grid, .areas-grid {
+    .about-grid, .areas-grid, .membresias-grid {
         grid-template-columns: 1fr;
     }
     
