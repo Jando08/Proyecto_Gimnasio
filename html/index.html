@@ -1,11 +1,316 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>NEON GYM | Potencia tu vida</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-    
+
+    <!-- Header / Navbar -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="#" class="logo">STEELYCO<span>GYM</span></a>
+            <nav class="navbar">
+                <ul class="nav-links">
+                    <li><a href="#hero">Inicio</a></li>
+                    <li><a href="#about">Nosotros</a></li>
+                    <li><a href="#areas">Áreas</a></li>
+                    <li><a href="#trainers">Entrenadores</a></li>
+                    <li><a href="#schedule">Horarios</a></li>
+                </ul>
+            </nav>
+            <button class="btn btn-primary" id="openLoginBtn">Ingresar</button>
+            <button class="btn-mobile" id="mobileMenuBtn">&#9776;</button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-menu" id="closeMenuBtn">&times;</button>
+        <ul class="mobile-nav-links">
+            <li><a href="#hero" class="mobile-link">Inicio</a></li>
+            <li><a href="#about" class="mobile-link">Nosotros</a></li>
+            <li><a href="#areas" class="mobile-link">Áreas</a></li>
+            <li><a href="#trainers" class="mobile-link">Entrenadores</a></li>
+            <li><a href="#schedule" class="mobile-link">Horarios</a></li>
+            <li><a href="#" class="mobile-link" id="mobileLoginBtn">Ingresar</a></li>
+        </ul>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModalBtn">&times;</button>
+            <h2>Iniciar Sesión</h2>
+            <p>Accede a tu panel de usuario</p>
+            
+            <form id="loginForm" method="POST" action="../php/login.php">
+                <div class="input-group">
+                    <label for="username">Usuario o Correo Electrónico</label>
+                    <input type="text" id="username" name="username" placeholder="Usuario o Correo Electrónico">
+                    <span class="error-message" id="userError">El Usuario o Correo son requeridos.</span>
+                </div>
+                <div class="input-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="password" placeholder="********">
+                    <span class="error-message" id="passError">La contraseña es requerida.</span>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                </div>
+                <div class="form-link">
+                    ¿No tienes cuenta? <a href="#" id="openRegisterBtn">Regístrate aquí</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+
+    <div class="modal-overlay" id="registerModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeRegisterModalBtn">&times;</button>
+            <h2>Crear Cuenta</h2>
+            <p>Únete a la familia STEELYCO
+                 GYM</p>
+            
+            <form id="registerForm" method="POST" action="../php/register.php">
+                <div class="input-group">
+                    <label for="regName">Usuario</label>
+                    <input type="text" id="regName" name="usuario" placeholder="Tu usuario" required>
+                </div>
+                <div class="input-group">
+                    <label for="regName">Nombre</label>
+                    <input type="text" id="regName" name="nombre" placeholder="Tu nombre" required>
+                </div>
+                
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="regApPaterno">Apellido Paterno</label>
+                        <input type="text" id="regApPaterno" name="ap_paterno" placeholder="Paterno" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="regApMaterno">Apellido Materno</label>
+                        <input type="text" id="regApMaterno" name="ap_materno" placeholder="Materno" required>
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="regSexo">Sexo</label>
+                        <select id="regSexo" name="sexo" required>
+                            <option value="">Selecciona...</option>
+                            <option value="M">Masculino</option>
+                            <option value="F">Femenino</option>
+                            <option value="O">Otro</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="regFechaNac">Fecha de Nacimiento</label>
+                        <input type="date" id="regFechaNac" name="fecha_nac" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="regEmail">Correo Electrónico</label>
+                    <input type="email" id="regEmail" name="email" placeholder="correo@ejemplo.com" required>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="regPassword">Contraseña</label>
+                        <input type="password" id="regPassword" name="password" placeholder="********" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="regConfirmPassword">Confirmar Contraseña</label>
+                        <input type="password" id="regConfirmPassword" name="confirm_password" placeholder="********" required>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary btn-block">Registrarme</button>
+                </div>
+                <div class="form-link">
+                    ¿Ya tienes cuenta? <a href="#" id="backToLoginBtn">Inicia Sesión</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">SUPERA TUS <span>LÍMITES</span></h1>
+            <p class="hero-subtitle">Instalaciones premium, equipo de última generación y ambiente motivador para que logres tus metas. Da el primer paso hoy.</p>
+            <button class="btn btn-primary btn-large" id="heroRegisterBtn">Inscríbete Ahora</button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="section-container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2 class="section-title">Acerca de <span>Nuestro Gimnasio</span></h2>
+                    <p>En STEELYCO GYM no solo levantamos pesas, creamos versiones mejoradas de nosotros mismos. Con un piso de más de 2000m², instalaciones de lujo y el mejor ambiente, tenemos todo lo necesario para que alcances tu máximo nivel.</p>
+                    <p>Ya seas un principiante o un atleta experimentado, te ofrecemos el espacio, los equipos y la comunidad que necesitas para mantener tu motivación al tope.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <h3>2,000+</h3>
+                        <p>Metros Cuadrados</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>150+</h3>
+                        <p>Máquinas Modernas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Areas & Equipment Section -->
+    <section id="areas" class="section areas dark-bg">
+        <div class="section-container">
+            <h2 class="section-title text-center">Nuestras <span>Áreas</span></h2>
+            <div class="areas-grid">
+                <!-- 1.- Zona de Cardio -->
+                <div class="area-card">
+                    <div class="area-img-wrapper">
+                        <!-- PON TU IMAGEN AQUI: Sustituye el texto del src por la ruta de tu imagen -->
+                        <img src="..." alt="Zona de Cardio">
+                    </div>
+                    <div class="area-info">
+                        <h3>Zona de Cardio</h3>
+                        <p>Equipos de última tecnología para mantener tu ritmo cardíaco y maximizar tu resistencia.</p>
+                    </div>
+                </div>
+                
+                <!-- 2.- Zona de Mancuernas -->
+                <div class="area-card">
+                    <div class="area-img-wrapper">
+                        <!-- PON TU IMAGEN AQUI: Sustituye el texto del src por la ruta de tu imagen -->
+                        <img src="..." alt="Zona de Mancuernas">
+                    </div>
+                    <div class="area-info">
+                        <h3>Zona de Mancuernas</h3>
+                        <p>Peso libre para hipertrofia y fuerza. Un espacio amplio y adaptado a tus necesidades.</p>
+                    </div>
+                </div>
+
+                <!-- 3.- Planta Baja -->
+                <div class="area-card">
+                    <div class="area-img-wrapper">
+                        <!-- PON TU IMAGEN AQUI: Sustituye el texto del src por la ruta de tu imagen -->
+                        <img src="..." alt="Planta Baja">
+                    </div>
+                    <div class="area-info">
+                        <h3>Planta Baja</h3>
+                        <p>Acceso principal con equipos especializados y un ambiente dinámico para empezar con fuerza.</p>
+                    </div>
+                </div>
+
+                <!-- 4.- Planta baja -->
+                <div class="area-card">
+                    <div class="area-img-wrapper">
+                        <!-- PON TU IMAGEN AQUI: Sustituye el texto del src por la ruta de tu imagen -->
+                        <img src="..." alt="Planta baja">
+                    </div>
+                    <div class="area-info">
+                        <h3>Planta baja</h3>
+                        <p>Extensión de entrenamiento con más opciones y distribución óptima del espacio.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trainers Section -->
+    <section id="trainers" class="section trainers">
+        <div class="section-container">
+            <h2 class="section-title text-center">Nuestros <span>Entrenadores</span></h2>
+            <p class="section-subtitle text-center">Profesionales certificados listos para guiarte en tu proceso.</p>
+            <div class="trainers-grid">
+                <div class="trainer-card">
+                    <img src="../img/gym_trainer_m_1776643162211.png" alt="Entrenador 1">
+                    <div class="trainer-info">
+                        <h3>Alex Carter</h3>
+                        <p>Especialista en Hipertrofia</p>
+                    </div>
+                </div>
+                <div class="trainer-card">
+                    <img src="../img/gym_trainer_f_1776643216280.png" alt="Entrenadora 1">
+                    <div class="trainer-info">
+                        <h3>Samantha Wright</h3>
+                        <p>Fuerza Funcional y Crossfit</p>
+                    </div>
+                </div>
+                <div class="trainer-card">
+                    <!-- Placeholder using heroic image space, or use Alex again for demo -->
+                    <img src="../img/gym_trainer_m_1776643162211.png" alt="Entrenador 2">
+                    <div class="trainer-info">
+                        <h3>Marcus Pierce</h3>
+                        <p>Acondicionamiento Físico</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> 
+
+    <!-- Schedule Section -->
+    <section id="schedule" class="section schedule dark-bg">
+        <div class="section-container">
+            <h2 class="section-title text-center">Nuestros <span>Horarios</span></h2>
+            <div class="schedule-table-container">
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Día</th>
+                            <th>Horario de Apertura</th>
+                            <th>Horario de Cierre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Lunes - Viernes</td>
+                            <td class="time">08:00 AM</td>
+                            <td class="time">10:00 PM</td>
+                        </tr>
+                        <tr>
+                            <td>Sábados</td>
+                            <td class="time">08:00 AM</td>
+                            <td class="time">03:00 PM</td>
+                        </tr>
+                        <tr>
+                            <td>Domingos y Festivos</td>
+                            <td class="time">Descansamos</td>
+                            <td class="time">Descansamos</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="section-container footer-content">
+            <div class="footer-brand">
+                <a href="#" class="logo">STEELYCO<span>GYM</span></a>
+                <p>Tu mejor versión, diseñada aquí.</p>
+            </div>
+            <div class="footer-links">
+                <p>&copy; 2026 STEELYCO GYM. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
 </body>
 </html>
