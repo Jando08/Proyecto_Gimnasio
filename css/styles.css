@@ -1,41 +1,65 @@
-/* Diseño estilo proyecto escolar de universidad */
+/* Diseño Oscuro Premium (Neon Blue & Black) - STEELYCO GYM */
+:root {
+    --primary-color: #00F0FF; /* Azul Neón / Cyan */
+    --bg-main: #050505; /* Negro Profundo / Fondo Principal */
+    --accent-color: #D400FF; /* Púrpura Eléctrico (Tercer color sugerido para combinar con el Neón y Negro) */
+    --text-main: #FFFFFF; /* Blanco para máxima legibilidad */
+    --bg-light: #111111; /* Negro ligeramente más claro para secciones */
+    --card-bg: #141414; /* Fondo para tarjetas */
+    --text-muted: #A0A0A0; /* Gris para textos secundarios */
+    --border-color: #222222; /* Gris muy oscuro para bordes */
+    
+    /* Brillos Neón sutiles para el box-shadow */
+    --shadow: 0 4px 20px rgba(0, 240, 255, 0.05); /* Sombra casi invisible */
+    --shadow-hover: 0 10px 30px rgba(0, 240, 255, 0.25), 0 0 15px rgba(0, 240, 255, 0.2); /* Resplandor neón azul */
+    --shadow-hover-accent: 0 10px 30px rgba(212, 0, 255, 0.25), 0 0 15px rgba(212, 0, 255, 0.2); /* Resplandor púrpura */
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #ffffff;
-    color: #000000;
+    font-family: 'Montserrat', 'Roboto', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
     margin: 0;
     padding: 0;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 h1, h2, h3, h4 {
-    font-family: "Times New Roman", Times, serif;
-    color: #000080; /* Azul marino para titulos */
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-color);
+    font-weight: 800;
+    text-align: center;
 }
 
 a {
-    color: #0000EE;
+    color: var(--primary-color);
     text-decoration: none;
+    transition: var(--transition);
 }
 
 a:hover {
-    color: #FF0000;
-    text-decoration: underline;
+    color: var(--accent-color);
+    text-shadow: 0 0 8px rgba(212, 0, 255, 0.6);
 }
 
 .section-container {
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
-    padding: 20px;
-    max-width: 1000px;
+    padding: 60px 0;
+    max-width: 1200px;
 }
 
+/* Rediseño de .section elegante */
 .section {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border: 2px solid #333333;
-    padding: 20px;
-    background-color: #F0F8FF; /* Azul muy claro para las secciones */
+    padding: 60px 0;
+    border: none;
+    background-color: var(--bg-main);
+    margin: 0;
+}
+
+.dark-bg {
+    background-color: var(--bg-light); /* En the dark theme this is just contrast */
 }
 
 .text-center {
@@ -43,64 +67,116 @@ a:hover {
 }
 
 .section-title {
-    border-bottom: 2px solid #000080;
-    padding-bottom: 10px;
+    border-bottom: none;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    position: relative;
+    padding-bottom: 20px;
+    display: inline-block;
+    color: var(--text-main);
     text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
 }
 
-/* Header basico */
+.section-title::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-color);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-top: -20px;
+    margin-bottom: 40px;
+}
+
+span {
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+}
+
+/* Header elegante y oscuro */
 .header {
-    background-color: #cccccc;
-    padding: 15px;
-    border-bottom: 3px solid #000000;
+    background-color: rgba(5, 5, 5, 0.85); /* Negro base translúcido */
+    padding: 15px 5%;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 4px 20px rgba(0, 240, 255, 0.05); /* Suave brillo neón hacia abajo */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(15px);
 }
 
 .nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .nav-links {
     list-style-type: none;
     padding: 0;
     display: flex;
-    gap: 15px;
+    gap: 30px;
 }
 
-.nav-links li {
-    display: inline;
+.nav-links li a {
+    font-weight: 600;
+    color: var(--text-main);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
 }
 
 .logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #000000;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--text-main);
+    letter-spacing: 1.5px;
 }
 
-span {
-    color: #ff0000; /* Letras rojas para resaltar */
+.logo span {
+    color: var(--primary-color);
 }
 
-/* Botones clasicos */
+/* Botones modernos cyberpunk */
 .btn {
-    background-color: #000080;
-    color: #ffffff !important;
-    padding: 10px 15px;
-    border: 2px solid #000000;
+    background-color: var(--primary-color);
+    color: #000000 !important; /* Texto negro para contraste pesado */
+    padding: 12px 28px;
+    border: none;
+    border-radius: 30px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: 800;
     text-transform: uppercase;
-    font-family: Arial, sans-serif;
+    letter-spacing: 1px;
+    transition: var(--transition);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
 }
 
 .btn:hover {
-    background-color: #0000FF;
+    background-color: #FFFFFF;
+    color: #000000 !important;
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
 }
 
 .btn-large {
-    font-size: 20px;
-    padding: 15px 20px;
+    font-size: 16px;
+    padding: 18px 40px;
+    border-radius: 40px;
 }
 
 .btn-block {
@@ -108,258 +184,612 @@ span {
     width: 100%;
 }
 
-/* Hero section */
+/* Hero section elegante */
 .hero {
+    position: relative;
+    height: 85vh;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    padding: 60px 20px;
-    background-color: #DDDDDD;
-    border: 2px solid #000000;
-    margin: 20px auto;
-    width: 80%;
-    max-width: 1000px;
+    background-image: url('../img/hero_bg.png'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    border: none;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    /* Degradado sombrío, hacia el negro puro pero ligeramente cibernético */
+    background: linear-gradient(to bottom, rgba(5,5,5, 0.7), rgba(5,5,5, 0.95));
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.hero-title {
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: var(--text-main);
+    margin-bottom: 25px;
+    text-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+    line-height: 1.1;
+    letter-spacing: -1px;
+}
+
+.hero-title span {
+    color: var(--primary-color);
 }
 
 .hero-subtitle {
-    font-size: 18px;
-    margin: 20px 0;
-    color: #333333;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.8;
+    margin-bottom: 45px;
+    color: var(--text-muted);
 }
 
-/* Grillas simplificadas */
-.about-grid, .areas-grid, .trainers-grid {
+/* Grillas eficientes */
+.about-grid, .areas-grid, .trainers-grid, .membresias-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 40px;
+    justify-content: center;
 }
 
 .about-text {
     flex: 2;
     min-width: 300px;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+.about-text p {
+    margin-bottom: 20px;
 }
 
 .about-stats {
     flex: 1;
-    background-color: #ffffcc;
-    border: 1px dashed #000000;
-    padding: 10px;
-    min-width: 200px;
+    background-color: var(--bg-light); /* En lugar de llenarlo de neón, usamos negro mate y texto neón */
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    padding: 40px 30px;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+    color: var(--text-main);
+    box-shadow: var(--shadow);
 }
 
 .stat-card {
-    margin-bottom: 20px;
     text-align: center;
 }
 
 .stat-card h3 {
-    font-size: 30px;
-    color: #000080;
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    margin: 0 0 5px 0;
+    font-weight: 900;
+    line-height: 1;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+}
+
+.stat-card p {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
     margin: 0;
+    color: var(--text-main);
 }
 
-/* Tarjetas */
+/* Tarjetas (Áreas y Team) estilo Neón Moderno */
 .area-card, .trainer-card {
-    border: 1px solid #000000;
-    padding: 10px;
-    width: 250px;
-    background-color: #ffffff;
-    flex: 1 1 250px; /* Un poco de flex para que no se rompa feo */
-    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    width: 280px;
+    background-color: var(--card-bg);
+    flex: 1 1 280px;
+    transition: var(--transition);
+    overflow: hidden;
+    position: relative;
 }
 
-.trainer-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    border-color: #000080;
+.area-card::after, .trainer-card::after {
+    /* Resplandor neón inferior invisible por defecto */
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; width: 100%; height: 2px;
+    background-color: var(--primary-color);
+    transform: scaleX(0);
+    transition: var(--transition);
+}
+
+.area-card:hover::after, .trainer-card:hover::after {
+    transform: scaleX(1);
+    box-shadow: 0 -5px 15px var(--primary-color);
+}
+
+.area-card:hover, .trainer-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(0, 240, 255, 0.3);
+}
+
+.area-img-wrapper {
+    height: 220px;
+    overflow: hidden;
 }
 
 .area-card img, .trainer-card img {
     width: 100%;
-    height: auto;
-    border: 1px solid #cccccc;
+    height: 100%;
+    object-fit: cover;
+    border: none;
+    transition: transform 0.6s ease;
+    opacity: 0.8; /* Ligeramente más opaco para el toque oscuro */
+}
+
+.area-card:hover img {
+    transform: scale(1.08);
+    opacity: 1;
+}
+
+.trainer-card img {
+    height: 320px;
+    object-position: top;
+    opacity: 1;
 }
 
 .area-info, .trainer-info {
+    text-align: left;
+    padding: 25px;
+}
+
+.area-info h3, .trainer-info h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+    color: var(--text-main);
+}
+
+.area-info p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+.trainer-info {
     text-align: center;
-    margin-top: 10px;
 }
 
-/* Membresias */
+.trainer-info p {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Membresias con estilo Dark Cyber */
 .membresias-grid {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
+    align-items: stretch;
 }
-
 
 .membresia-card {
-    border: 2px solid #000080;
-    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 40px 30px;
     width: 250px;
-    background-color: #ffffff;
+    background-color: var(--card-bg);
     text-align: center;
-    transition: all 0.3s ease;
+    transition: var(--transition);
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
-.membresia-card:hover{
-    transform: scale(1.05);
-    transition: all 0.3s ease;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    border-color: #ff0000;
-    border-width: 4px;
-    background-color: #ffe6e6;
+
+.membresia-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-hover);
 }
 
 .membresia-card.popular {
-    background-color: #ffe6e6;
-    border-color: #ff0000;
-    border-width: 4px;
+    background-color: #0A0A0E; /* Un negro casi puro ligeramente tintado */
+    border-color: var(--accent-color); /* Usamos el púrpura aquí! */
+    color: var(--text-main);
+    transform: scale(1.05); 
+    z-index: 2;
+    box-shadow: 0 0 20px rgba(212, 0, 255, 0.15); /* Púrpura glow */
+}
+
+.membresia-card.popular:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: var(--shadow-hover-accent);
 }
 
 .membresia-badge {
-    background-color: #ff0000;
-    color: #ffffff;
-    font-weight: bold;
-    padding: 5px;
-    margin-bottom: 10px;
-    display: inline-block;
-    border: 1px solid #000000;
+    background-color: var(--accent-color); /* Badge Púrpura brillante */
+    color: var(--text-main);
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 800;
+    padding: 8px 20px;
+    border-radius: 25px;
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    letter-spacing: 1.5px;
+    border: none;
+    box-shadow: 0 0 15px rgba(212, 0, 255, 0.5);
+    white-space: nowrap;
+}
+
+.membresia-header {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+}
+
+.membresia-card.popular .membresia-header {
+    border-bottom-color: rgba(212, 0, 255, 0.3);
+}
+
+.membresia-header h3 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+    color: var(--text-main);
 }
 
 .precio {
-    font-size: 32px;
-    color: #008000; /* Precio en color verde basico */
-    font-weight: bold;
-    margin: 10px 0;
-    transition: all 0.3s ease;
+    font-size: 3.5rem;
+    color: var(--primary-color); /* Azul Neón en el precio */
+    font-weight: 900;
+    margin: 0;
+    line-height: 1;
+    transition: var(--transition);
+    text-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
 }
 
-.membresia-card:hover .precio {
-    transform: scale(1.15);
-    color: #000000; /* Cambia a negro para dar un efecto bonito */
+.membresia-card.popular .precio {
+    color: var(--accent-color); /* Púrpura mágico para la más popular */
+    text-shadow: 0 0 15px rgba(212, 0, 255, 0.4);
 }
 
 .precio span {
-    font-size: 16px;
-    color: #555555;
-    font-weight: normal;
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    display: inline-block;
+    margin-left: 5px;
+    text-shadow: none;
 }
 
 ul.membresia-features {
     text-align: left;
-    margin: 20px 0;
-    padding-left: 20px;
+    margin: 0 0 30px 0;
+    padding: 0;
+    list-style: none;
+    flex-grow: 1;
 }
 
-/* Tablas estilo HTML puro */
-.schedule-table-container {
-    overflow-x: auto;
+ul.membresia-features li {
+    padding: 12px 0;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
 }
 
-.schedule-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background-color: #ffffff;
+ul.membresia-features li::before {
+    content: "✓";
+    color: var(--primary-color);
+    font-weight: 900;
+    font-size: 1.1rem;
+    line-height: 1;
+    text-shadow: 0 0 5px var(--primary-color);
 }
 
-.schedule-table th, .schedule-table td {
-    border: 2px solid #000000;
-    padding: 10px;
-    text-align: left;
+.membresia-card.popular ul.membresia-features li {
+    color: #DDE2E5;
 }
 
-.schedule-table th {
-    background-color: #000080;
-    color: #ffffff;
+.membresia-card.popular ul.membresia-features li::before {
+    color: var(--accent-color); 
+    text-shadow: 0 0 5px var(--accent-color);
 }
 
-.schedule-table tbody tr:nth-child(even) {
-    background-color: #eeeeee;
-}
-
-/* Modales basicos */
+/* Modales Refinados Neón */
 .modal-overlay {
     display: none;
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(5, 5, 5, 0.85); /* Oscuro borroso puro */
+    backdrop-filter: blur(8px);
+    z-index: 1000;
 }
 
 .modal-overlay.active {
-    display: block; 
+    display: flex; 
+    align-items: center;
+    justify-content: center;
 }
 
 .modal-content {
-    background-color: #ffffff;
-    width: 500px;
+    background-color: var(--bg-light);
+    width: 550px;
     max-width: 90%;
-    margin: 50px auto;
-    padding: 20px;
-    border: 4px solid #000000;
-    max-height: 80vh;
+    margin: 0;
+    padding: 40px;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 240, 255, 0.1); /* Efecto sombra negra y azul muy leve */
+    max-height: 85vh;
     overflow-y: auto;
+    position: relative;
+    animation: modalFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .close-modal {
-    float: right;
-    background-color: #ff0000;
-    color: #ffffff;
-    border: 2px solid #000000;
-    font-weight: bold;
-    padding: 5px 10px;
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background: none;
+    color: var(--text-muted);
+    border: none;
+    font-size: 28px;
     cursor: pointer;
+    transition: color 0.2s;
+    float: none;
+    padding: 0;
+    font-weight: 300;
+    line-height: 1;
+}
+
+.close-modal:hover {
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--primary-color);
+}
+
+.modal-content h2 {
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+    text-align: center;
+    color: var(--text-main);
+}
+
+.modal-content p {
+    text-align: center;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+}
+
+.input-row {
+    display: flex;
+    gap: 20px;
+}
+
+.input-row .input-group {
+    flex: 1;
 }
 
 .input-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .input-group label {
     display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
 }
 
 .input-group input, .input-group select {
     width: 100%;
     box-sizing: border-box;
-    padding: 8px;
-    border: 2px inset #cccccc; /* Borde inset como los inputs antiguos */
+    padding: 14px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+}
+
+.input-group input:focus, .input-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background-color: #0A0A0A;
+    box-shadow: 0 0 0 2px rgba(0, 240, 255, 0.2);
 }
 
 .error-message {
-    color: #ff0000;
-    font-size: 12px;
-    font-weight: bold;
+    color: var(--accent-color);
+    font-size: 0.85rem;
+    margin-top: 6px;
+    font-weight: 600;
     display: none;
 }
 
 .form-link {
-    margin-top: 15px;
+    margin-top: 25px;
     text-align: center;
-    border-top: 1px solid #cccccc;
-    padding-top: 10px;
+    font-size: 0.95rem;
+    color: var(--text-muted);
 }
 
-/* Footer super simple */
+.form-link a {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.form-link a:hover {
+    text-decoration: underline;
+    color: var(--accent-color);
+}
+
+/* Tablas Premium Dark Mode */
+.schedule-table-container {
+    overflow-x: auto;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    background-color: var(--card-bg);
+    padding: 10px;
+    border: 1px solid var(--border-color);
+}
+
+.schedule-table {
+    width: 100%;
+    border-collapse: separate; 
+    border-spacing: 0;
+    margin-top: 0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.schedule-table th, .schedule-table td {
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 20px 25px;
+    text-align: center;
+}
+
+.schedule-table th {
+    background-color: var(--bg-main); /* Negro duro para contraste */
+    color: var(--primary-color); /* Títulos en Neón Azul */
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.95rem;
+}
+
+.schedule-table th:first-child {
+    text-align: left;
+}
+
+.schedule-table td:first-child {
+    text-align: left;
+    font-weight: 700;
+    color: var(--text-main);
+    font-size: 1.05rem;
+}
+
+.schedule-table .time {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.schedule-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.schedule-table tbody tr {
+    transition: background-color 0.2s;
+}
+
+.schedule-table tbody tr:hover {
+    background-color: #1A1A1A; /* Gris oscurito pero que se note el hover */
+}
+
+/* Footer Limpio y Oscuro */
 .footer {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: #030303; /* Aún más negro que el --bg-main */
+    color: var(--text-main);
     text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-    border-top: 5px solid #000080;
+    padding: 80px 20px 40px;
+    margin-top: 0;
+    border-top: 1px solid var(--border-color);
 }
 
-.footer a {
-    color: #00ffff;
+.footer-content {
+    padding: 0;
+    max-width: 800px;
 }
 
 .footer .logo {
-    color: #ffffff;
+    color: var(--text-main);
+    display: inline-block;
+    margin-bottom: 15px;
+    font-size: 32px;
 }
 
-/* Ocultar cosas extra de mobile para no complicar el diseño 'basico' */
+.footer p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+.footer-links {
+    margin-top: 40px;
+    padding-top: 25px;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-links p {
+    font-size: 0.9rem;
+    color: #555555;
+}
+
+/* Elementos móviles nativos */
 .btn-mobile, .mobile-menu {
     display: none;
+}
+
+@media (max-width: 900px) {
+    .nav-links, .btn#openLoginBtn {
+        display: none;
+    }
+    
+    .btn-mobile {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 28px;
+        color: var(--primary-color);
+        cursor: pointer;
+        padding: 0;
+    }
+
+    .hero-title {
+        font-size: 3.2rem;
+    }
+    
+    .stat-card h3 {
+        font-size: 2.8rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    .input-row {
+        flex-direction: column;
+        gap: 0;
+    }
 }
