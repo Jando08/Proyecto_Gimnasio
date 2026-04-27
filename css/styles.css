@@ -241,11 +241,20 @@ span {
 }
 
 /* Grillas eficientes */
-.about-grid, .areas-grid, .trainers-grid, .membresias-grid {
+.about-grid, .trainers-grid, .membresias-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 40px;
     justify-content: center;
+}
+
+/* Grid 2x2 para las áreas */
+.areas-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .about-text {
@@ -299,12 +308,15 @@ span {
 .area-card, .trainer-card {
     border: 1px solid var(--border-color);
     border-radius: 16px;
-    width: 280px;
     background-color: var(--card-bg);
-    flex: 1 1 280px;
     transition: var(--transition);
     overflow: hidden;
     position: relative;
+}
+
+.trainer-card {
+    width: 280px;
+    flex: 1 1 280px;
 }
 
 .area-card::after, .trainer-card::after {
@@ -717,42 +729,136 @@ ul.membresia-features li::before {
     background-color: #1A1A1A; /* Gris oscurito pero que se note el hover */
 }
 
-/* Footer Limpio y Oscuro */
+/* Footer Expandido */
 .footer {
-    background-color: #030303; /* Aún más negro que el --bg-main */
+    background-color: #030303;
     color: var(--text-main);
-    text-align: center;
-    padding: 80px 20px 40px;
-    margin-top: 0;
     border-top: 1px solid var(--border-color);
-}
-
-.footer-content {
     padding: 0;
-    max-width: 800px;
 }
 
-.footer .logo {
+.footer-main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 70px 5% 50px;
+}
+
+.footer-col h4 {
+    font-size: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+/* Columna 1 - Marca */
+.footer-brand .logo {
     color: var(--text-main);
     display: inline-block;
     margin-bottom: 15px;
-    font-size: 32px;
+    font-size: 28px;
 }
 
-.footer p {
+.footer-brand p {
     color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    text-align: left;
+}
+
+/* Columna 2 - Contacto */
+.footer-contact ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.footer-contact ul li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+.footer-icon {
     font-size: 1.1rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+    color: var(--text-main);
+    text-shadow: none;
 }
 
-.footer-links {
-    margin-top: 40px;
-    padding-top: 25px;
-    border-top: 1px solid var(--border-color);
+/* Columna 3 - Redes Sociales */
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
-.footer-links p {
+.social-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 18px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    color: var(--text-muted);
     font-size: 0.9rem;
-    color: #555555;
+    font-weight: 600;
+    transition: var(--transition);
+    background-color: var(--card-bg);
+    letter-spacing: 0.5px;
+}
+
+.social-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    background-color: rgba(0, 240, 255, 0.05);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+    transform: translateX(4px);
+    text-shadow: none;
+}
+
+/* Barra inferior del footer */
+.footer-bottom {
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    padding: 22px 5%;
+}
+
+.footer-bottom p {
+    color: #444;
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+/* Responsive footer */
+@media (max-width: 900px) {
+    .footer-main {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer-main {
+        grid-template-columns: 1fr;
+        padding: 50px 5% 30px;
+    }
 }
 
 /* Elementos móviles nativos */
@@ -791,6 +897,9 @@ ul.membresia-features li::before {
     .input-row {
         flex-direction: column;
         gap: 0;
+    }
+    .areas-grid {
+        grid-template-columns: 1fr;
     }
 }
 
