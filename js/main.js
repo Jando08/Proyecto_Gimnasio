@@ -25,16 +25,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const userError = document.getElementById('userError');
     const passError = document.getElementById('passError');
 
-    // --- Mobile Menu Logic ---
+    // Menu Movil
     function toggleMobileMenu() {
         mobileMenu.classList.toggle('active');
     }
+
 
     if (mobileMenuBtn && closeMenuBtn && mobileMenu) {
         mobileMenuBtn.addEventListener('click', toggleMobileMenu);
         closeMenuBtn.addEventListener('click', toggleMobileMenu);
 
-        // Close mobile menu when a link is clicked
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('active');
@@ -42,11 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Login Modal Logic ---
+    
     function openModal(e) {
         if(e) e.preventDefault();
         loginModal.classList.add('active');
-        // Reset form errors on open
         resetErrors();
     }
 
@@ -83,14 +82,14 @@ document.addEventListener('DOMContentLoaded', () => {
         openRegisterBtn.addEventListener('click', openRegisterModal);
         closeRegisterModalBtn.addEventListener('click', closeRegisterModal);
         
-        // Close modal when clicking outside of it
+    
         registerModal.addEventListener('click', (e) => {
             if (e.target === registerModal) {
                 closeRegisterModal();
             }
         });
 
-        // Switch back to Login Modal
+        
         if(backToLoginBtn) {
             backToLoginBtn.addEventListener('click', (e) => {
                 if(e) e.preventDefault();
@@ -99,13 +98,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         
-        // Hero button triggers register directly
+        
         if(heroRegisterBtn) {
             heroRegisterBtn.addEventListener('click', openRegisterModal);
         }
     }
 
-    // --- Form Validation Logic ---
+    
     function resetErrors() {
         userError.style.display = 'none';
         passError.style.display = 'none';
@@ -118,30 +117,28 @@ document.addEventListener('DOMContentLoaded', () => {
             let isValid = true;
             resetErrors();
 
-            // Validate Username
+            
             if (usernameInput.value.trim() === '') {
                 userError.style.display = 'block';
                 usernameInput.style.borderColor = 'var(--error-color)';
                 isValid = false;
             }
 
-            // Validate Password
+            
             if (passwordInput.value.trim() === '') {
                 passError.style.display = 'block';
                 passwordInput.style.borderColor = 'var(--error-color)';
                 isValid = false;
             }
 
-            // If not valid, prevent submission
-            // Note: Since this is purely frontend for now and the user handles backend,
-            // we will let it submit IF valid. The form logic targets '../php/login.php'
+            
             if (!isValid) {
                 e.preventDefault();
             }
         });
     }
 
-    // Add smooth scrolling for desktop navbar links
+    
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             if(this.getAttribute('href') !== '#') {
@@ -166,5 +163,5 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.12 });
 
-// Observar todos los elementos con clase fade-up
+
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
