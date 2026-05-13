@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: ../index.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -25,7 +32,7 @@
                     <li><a href="#schedule">Horarios</a></li>
                 </ul>
             </nav>
-            <button class="btn btn-primary" id="openLoginBtn">Ingresar</button>
+            <a href="logout.php" class="btn btn-primary">Cerrar Sesión</a>
             <button class="btn-mobile" id="mobileMenuBtn">&#9776;</button>
         </div>
     </header>
@@ -39,109 +46,11 @@
             <li><a href="#areas" class="mobile-link">Áreas</a></li>
             <li><a href="#trainers" class="mobile-link">Entrenadores</a></li>
             <li><a href="#schedule" class="mobile-link">Horarios</a></li>
-            <li><a href="#" class="mobile-link" id="mobileLoginBtn">Ingresar</a></li>
+            <li><a href="logout.php" class="mobile-link">Cerrar Sesión</a></li>
         </ul>
     </div>
 
-    <!-- Login  -->
-    <div class="modal-overlay" id="loginModal">
-        <div class="modal-content">
-            <button class="close-modal" id="closeModalBtn">&times;</button>
-            <h2>Iniciar Sesión</h2>
-            <p>Accede a tu panel de usuario</p>
-            
-            <form id="loginForm" method="POST" action="../php/login.php">
-                <div class="input-group">
-                    <label for="username">Usuario o Correo Electrónico</label>
-                    <input type="text" id="username" name="username" placeholder="Usuario o Correo Electrónico">
-                    <span class="error-message" id="userError">El Usuario o Correo son requeridos.</span>
-                </div>
-                <div class="input-group">
-                    <label for="password">Contraseña</label>
-                    <input type="password" id="password" name="password" placeholder="********">
-                    <span class="error-message" id="passError">La contraseña es requerida.</span>
-                </div>
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-primary btn-block">Entrar</button>
-                </div>
-                <div class="form-link">
-                    ¿No tienes cuenta? <a href="#" id="openRegisterBtn">Regístrate aquí</a>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Formulario de registro -->
-
-    <div class="modal-overlay" id="registerModal">
-        <div class="modal-content">
-            <button class="close-modal" id="closeRegisterModalBtn">&times;</button>
-            <h2>Crear Cuenta</h2>
-            <p>Únete a la familia STEELYCO
-                 GYM</p>
-            
-            <form id="registerForm" method="POST" action="../php/register.php">
-                <div class="input-group">
-                    <label for="regName">Usuario</label>
-                    <input type="text" id="regName" name="usuario" placeholder="Tu usuario" required>
-                </div>
-                <div class="input-group">
-                    <label for="regName">Nombre</label>
-                    <input type="text" id="regName" name="nombre" placeholder="Tu nombre" required>
-                </div>
-                
-                <div class="input-row">
-                    <div class="input-group">
-                        <label for="regApPaterno">Apellido Paterno</label>
-                        <input type="text" id="regApPaterno" name="ap_paterno" placeholder="Paterno" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="regApMaterno">Apellido Materno</label>
-                        <input type="text" id="regApMaterno" name="ap_materno" placeholder="Materno" required>
-                    </div>
-                </div>
-
-                <div class="input-row">
-                    <div class="input-group">
-                        <label for="regSexo">Sexo</label>
-                        <select id="regSexo" name="sexo" required>
-                            <option value="">Selecciona...</option>
-                            <option value="M">Masculino</option>
-                            <option value="F">Femenino</option>
-                            <option value="Otro">Otro</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <label for="regFechaNac">Fecha de Nacimiento</label>
-                        <input type="date" id="regFechaNac" name="fecha_nac" required>
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <label for="regEmail">Correo Electrónico</label>
-                    <input type="email" id="regEmail" name="email" placeholder="correo@ejemplo.com" required>
-                </div>
-
-                <div class="input-row">
-                    <div class="input-group">
-                        <label for="regPassword">Contraseña</label>
-                        <input type="password" id="regPassword" name="password" placeholder="********" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="regConfirmPassword">Confirmar Contraseña</label>
-                        <input type="password" id="regConfirmPassword" name="confirm_password" placeholder="********" required>
-                    </div>
-                </div>
-
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-primary btn-block">Registrarme</button>
-                </div>
-                <div class="form-link">
-                    ¿Ya tienes cuenta? <a href="#" id="backToLoginBtn">Inicia Sesión</a>
-                </div>
-            </form>
-        </div>
-    </div>
+    <!-- Modales removidos (ahora están en index.php) -->
 
     <!-- Seccion del titulo -->
     <section id="hero" class="hero">
