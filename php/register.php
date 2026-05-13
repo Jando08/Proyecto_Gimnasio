@@ -46,16 +46,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Confirmar la transacción
         $conn->commit();
 
-        echo "<script>alert('¡Registro exitoso! Ahora puedes iniciar sesión.'); window.location.href = '../html/index.html';</script>";
+        echo "<script>alert('¡Registro exitoso! Ahora puedes iniciar sesión.'); window.location.href = '../index.php';</script>";
 
     } catch (PDOException $e) {
-        // En caso de error, revertir los cambios
-        $conn->rollBack();
+        // En caso de error, revertir los cambios si hay una transacción activa
+        if ($conn->inTransaction()) {
+            $conn->rollBack();
+        }
         die("Error al registrar: " . $e->getMessage());
     }
 } else {
     // Si no es POST, redirigir al index
-    header("Location: ../html/index.html");
+    header("Location: ../index.php");
     exit();
 }
 ?>
