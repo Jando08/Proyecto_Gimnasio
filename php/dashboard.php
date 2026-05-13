@@ -32,7 +32,7 @@ if (!isset($_SESSION['usuario_id'])) {
                     <li><a href="#schedule">Horarios</a></li>
                 </ul>
             </nav>
-            <a href="logout.php" class="btn btn-primary">Cerrar Sesión</a>
+            <a href="logout.php" class="btn btn-logout">Cerrar Sesión</a>
             <button class="btn-mobile" id="mobileMenuBtn">&#9776;</button>
         </div>
     </header>
