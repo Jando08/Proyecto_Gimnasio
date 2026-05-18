@@ -50,7 +50,8 @@ if (!isset($_SESSION['usuario_id'])) {
         </ul>
     </div>
 
-    <!-- Modales removidos (ahora están en index.php) -->
+
+
 
     <!-- Seccion del titulo -->
     <section id="hero" class="hero">
@@ -316,5 +317,6 @@ if (!isset($_SESSION['usuario_id'])) {
     </footer>
 
     <script src="../js/main.js"></script>
+
 </body>
 </html>
