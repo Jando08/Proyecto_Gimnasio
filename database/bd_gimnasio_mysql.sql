@@ -159,3 +159,112 @@ INSERT INTO Horario (horaInicio, horaFin, descripcion, id_Dia) VALUES
 ('08:00:00','22:00:00','Todo el día',5),
 ('08:00:00','15:00:00','Solo medio día',6),
 ('00:00:00','00:00:00','Descansamos',7);
+
+-- =================================================
+-- ENTRENADORES
+-- Rol id=3 (Entrenador)
+-- Turnos: 1=Matutino, 2=Vespertino
+-- Especialidades: 1=Crossfit, 2=Spinning, 3=Yoga, 4=Pesas
+-- Horarios: 1=Lun 2=Mar 3=Mié 4=Jue 5=Vie 6=Sáb 7=Dom
+-- =================================================
+
+-- 1. Usuarios con rol Entrenador (id_Rol = 3)
+INSERT INTO Usuario (username, correo, contrasenia, id_Rol) VALUES
+('lyamal',    'lamine.yamal@steelycogym.com',    'trainer123', 3),
+('aputellas', 'alexia.putellas@steelycogym.com', 'trainer123', 3),
+('vjunior',   'vinicius.jr@steelycogym.com',     'trainer123', 3),
+('cmorales',  'carlos.morales@steelycogym.com',  'trainer123', 3);
+
+-- 2. Entrenadores — INSERT separados para evitar problema de subquery en VALUES multi-fila
+INSERT INTO Entrenador (nombre, apPatEntrenador, apMatEntrenador, sexo, id_Usuario, id_Turno)
+SELECT 'Lamine','Yamal','Nasraoui','M', id_Usuario, 1
+FROM Usuario WHERE username = 'lyamal';
+
+INSERT INTO Entrenador (nombre, apPatEntrenador, apMatEntrenador, sexo, id_Usuario, id_Turno)
+SELECT 'Alexia','Putellas','Segura','F', id_Usuario, 2
+FROM Usuario WHERE username = 'aputellas';
+
+INSERT INTO Entrenador (nombre, apPatEntrenador, apMatEntrenador, sexo, id_Usuario, id_Turno)
+SELECT 'Vinicius','Junior','de Oliveira','M', id_Usuario, 1
+FROM Usuario WHERE username = 'vjunior';
+
+INSERT INTO Entrenador (nombre, apPatEntrenador, apMatEntrenador, sexo, id_Usuario, id_Turno)
+SELECT 'Carlos','Morales','Ibarra','M', id_Usuario, 2
+FROM Usuario WHERE username = 'cmorales';
+
+-- 3. Especialidades por entrenador
+--    Lamine  → Crossfit (1) + Pesas (4)
+INSERT INTO Especialidad_Entrenador (id_Entrenador, id_Especialidad)
+SELECT id_Entrenador, 1 FROM Entrenador WHERE apPatEntrenador = 'Yamal';
+INSERT INTO Especialidad_Entrenador (id_Entrenador, id_Especialidad)
+SELECT id_Entrenador, 4 FROM Entrenador WHERE apPatEntrenador = 'Yamal';
+
+--    Alexia  → Crossfit (1) + Yoga (3)
+INSERT INTO Especialidad_Entrenador (id_Entrenador, id_Especialidad)
+SELECT id_Entrenador, 1 FROM Entrenador WHERE apPatEntrenador = 'Putellas';
+INSERT INTO Especialidad_Entrenador (id_Entrenador, id_Especialidad)
+SELECT id_Entrenador, 3 FROM Entrenador WHERE apPatEntrenador = 'Putellas';
+
+--    Vinicius → Pesas (4) + Spinning (2)
+INSERT INTO Especialidad_Entrenador (id_Entrenador, id_Especialidad)
+SELECT id_Entrenador, 4 FROM Entrenador WHERE apPatEntrenador = 'Junior';
+INSERT INTO Especialidad_Entrenador (id_Entrenador, id_Especialidad)
+SELECT id_Entrenador, 2 FROM Entrenador WHERE apPatEntrenador = 'Junior';
+
+--    Carlos  → Yoga (3) + Spinning (2)
+INSERT INTO Especialidad_Entrenador (id_Entrenador, id_Especialidad)
+SELECT id_Entrenador, 3 FROM Entrenador WHERE apPatEntrenador = 'Morales';
+INSERT INTO Especialidad_Entrenador (id_Entrenador, id_Especialidad)
+SELECT id_Entrenador, 2 FROM Entrenador WHERE apPatEntrenador = 'Morales';
+
+-- 4. Horarios por entrenador
+--    Lamine → Lun-Vie (1-5), turno Matutino
+INSERT INTO Horario_Entrenador (id_Entrenador, id_Horario)
+SELECT id_Entrenador, 1 FROM Entrenador WHERE apPatEntrenador = 'Yamal';
+INSERT INTO Horario_Entrenador (id_Entrenador, id_Horario)
+SELECT id_Entrenador, 2 FROM Entrenador WHERE apPatEntrenador = 'Yamal';
+INSERT INTO Horario_Entrenador (id_Entrenador, id_Horario)
+SELECT id_Entrenador, 3 FROM Entrenador WHERE apPatEntrenador = 'Yamal';
+INSERT INTO Horario_Entrenador (id_Entrenador, id_Horario)
+SELECT id_Entrenador, 4 FROM Entrenador WHERE apPatEntrenador = 'Yamal';
+INSERT INTO Horario_Entrenador (id_Entrenador, id_Horario)
+SELECT id_Entrenador, 5 FROM Entrenador WHERE apPatEntrenador = 'Yamal';
+
+--    Alexia → Lun-Sáb (1-6), turno Vespertino
+INSERT INTO Horario_Entrenador (id_Entrenador, id_Horario)
+SELECT id_Entrenador, 1 FROM Entrenador WHERE apPatEntrenador = 'Putellas';
+INSERT INTO Horario_Entrenador (id_Entrenador, id_Horario)
+SELECT id_Entrenador, 2 FROM Entrenador WHERE apPatEntrenador = 'Putellas';
+INSERT INTO Horario_Entrenador (id_Entrenador, id_Horario)
+SELECT id_Entrenador, 3 FROM Entrenador WHERE apPatEntrenador = 'Putellas';
+INSERT INTO Horario_Entrenador (id_Entrenador, id_Horario)
+SELECT id_Entrenador, 4 FROM Entrenador WHERE apPatEntrenador = 'Putellas';
+INSERT INTO Horario_Entrenador (id_Entrenador, id_Horario)
+SELECT id_Entrenador, 5 FROM Entrenador WHERE apPatEntrenador = 'Putellas';
+INSERT INTO Horario_Entrenador (id_Entrenador, id_Horario)
+SELECT id_Entrenador, 6 FROM Entrenador WHERE apPatEntrenador = 'Putellas';
+
+--    Vinicius → Lun-Vie (1-5), turno Matutino
+INSERT INTO Horario_Entrenador (id_Entrenador, id_Horario)
+SELECT id_Entrenador, 1 FROM Entrenador WHERE apPatEntrenador = 'Junior';
+INSERT INTO Horario_Entrenador (id_Entrenador, id_Horario)
+SELECT id_Entrenador, 2 FROM Entrenador WHERE apPatEntrenador = 'Junior';
+INSERT INTO Horario_Entrenador (id_Entrenador, id_Horario)
+SELECT id_Entrenador, 3 FROM Entrenador WHERE apPatEntrenador = 'Junior';
+INSERT INTO Horario_Entrenador (id_Entrenador, id_Horario)
+SELECT id_Entrenador, 4 FROM Entrenador WHERE apPatEntrenador = 'Junior';
+INSERT INTO Horario_Entrenador (id_Entrenador, id_Horario)
+SELECT id_Entrenador, 5 FROM Entrenador WHERE apPatEntrenador = 'Junior';
+
+--    Carlos → Mar-Sáb (2-6), turno Vespertino
+INSERT INTO Horario_Entrenador (id_Entrenador, id_Horario)
+SELECT id_Entrenador, 2 FROM Entrenador WHERE apPatEntrenador = 'Morales';
+INSERT INTO Horario_Entrenador (id_Entrenador, id_Horario)
+SELECT id_Entrenador, 3 FROM Entrenador WHERE apPatEntrenador = 'Morales';
+INSERT INTO Horario_Entrenador (id_Entrenador, id_Horario)
+SELECT id_Entrenador, 4 FROM Entrenador WHERE apPatEntrenador = 'Morales';
+INSERT INTO Horario_Entrenador (id_Entrenador, id_Horario)
+SELECT id_Entrenador, 5 FROM Entrenador WHERE apPatEntrenador = 'Morales';
+INSERT INTO Horario_Entrenador (id_Entrenador, id_Horario)
+SELECT id_Entrenador, 6 FROM Entrenador WHERE apPatEntrenador = 'Morales';
+

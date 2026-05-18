@@ -935,3 +935,407 @@ ul.membresia-features li::before {
 .fade-up-delay-2 { transition-delay: 0.2s; }
 .fade-up-delay-3 { transition-delay: 0.3s; }
 .fade-up-delay-4 { transition-delay: 0.4s; }
+
+/* =====================================================
+   MODAL WIZARD DE INSCRIPCIÓN
+   ===================================================== */
+
+.inscripcion-modal {
+    width: 680px;
+    max-width: 95%;
+    padding: 40px 45px 35px;
+}
+
+/* ─── Barra de progreso ────────────────────────────── */
+.wizard-progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 35px;
+}
+
+.wizard-step-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.wizard-step-indicator span {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    text-shadow: none;
+    transition: color 0.3s;
+}
+
+.step-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--text-muted);
+    background-color: var(--bg-main);
+    transition: all 0.35s ease;
+}
+
+.wizard-step-indicator.active .step-circle {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+}
+
+.wizard-step-indicator.active span {
+    color: var(--primary-color);
+}
+
+.wizard-step-indicator.completed .step-circle {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #000;
+}
+
+.wizard-line {
+    flex: 1;
+    height: 2px;
+    background-color: var(--border-color);
+    margin: 0 10px;
+    margin-bottom: 22px;
+    max-width: 80px;
+    transition: background-color 0.3s;
+}
+
+/* ─── Contenido pasos ──────────────────────────────── */
+.wizard-step h2 {
+    font-size: 1.7rem;
+    margin-top: 0;
+    margin-bottom: 6px;
+    text-align: center;
+    color: var(--text-main);
+}
+
+.wizard-step > p {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    margin-bottom: 25px;
+}
+
+/* ─── Grid de planes ───────────────────────────────── */
+.planes-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 10px;
+}
+
+.plan-card {
+    border: 2px solid var(--border-color);
+    border-radius: 14px;
+    padding: 22px 14px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: var(--bg-main);
+    position: relative;
+}
+
+.plan-card:hover {
+    border-color: rgba(0, 240, 255, 0.5);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 240, 255, 0.15);
+}
+
+.plan-card.selected {
+    border-color: var(--primary-color);
+    background-color: rgba(0, 240, 255, 0.06);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.25);
+}
+
+.plan-card.selected::after {
+    content: '✓';
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    color: var(--primary-color);
+    font-weight: 900;
+    font-size: 1rem;
+    text-shadow: 0 0 8px var(--primary-color);
+}
+
+.plan-icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.plan-card h3 {
+    font-size: 1rem;
+    color: var(--text-main);
+    margin: 0 0 6px 0;
+    font-weight: 700;
+}
+
+.plan-precio {
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    font-weight: 900;
+    margin: 0;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+}
+
+.plan-periodo {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin: 4px 0 0 0;
+}
+
+.plan-loading, .plan-error {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 20px;
+    font-size: 0.95rem;
+    grid-column: 1 / -1;
+}
+
+/* ─── Grid de entrenadores ─────────────────────────── */
+.entrenadores-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 280px;
+    overflow-y: auto;
+    padding-right: 4px;
+    margin-bottom: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--bg-main);
+}
+
+.entrenadores-grid::-webkit-scrollbar {
+    width: 4px;
+}
+.entrenadores-grid::-webkit-scrollbar-track { background: var(--bg-main); }
+.entrenadores-grid::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+.entrenador-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    background-color: var(--bg-main);
+    position: relative;
+}
+
+.entrenador-card:hover {
+    border-color: rgba(0, 240, 255, 0.4);
+    background-color: rgba(0, 240, 255, 0.03);
+}
+
+.entrenador-card.selected {
+    border-color: var(--primary-color);
+    background-color: rgba(0, 240, 255, 0.07);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+}
+
+.entrenador-avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 1rem;
+    color: #000;
+    flex-shrink: 0;
+}
+
+.entrenador-info {
+    flex: 1;
+}
+
+.entrenador-info h4 {
+    margin: 0 0 4px 0;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    text-align: left;
+    font-weight: 700;
+}
+
+.ent-turno, .ent-esp {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-align: left;
+    text-shadow: none;
+}
+
+.ent-check {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    font-weight: 900;
+    opacity: 0;
+    transition: opacity 0.2s;
+    text-shadow: 0 0 8px var(--primary-color);
+}
+
+.entrenador-card.selected .ent-check { opacity: 1; }
+
+.skip-trainer {
+    text-align: center;
+    margin-top: 12px;
+}
+
+.btn-skip {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    transition: color 0.2s;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.btn-skip:hover { color: var(--primary-color); }
+
+/* ─── Paso 3: Confirmación ─────────────────────────── */
+.confirm-icon {
+    font-size: 3.5rem;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.confirm-summary {
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin: 20px 0 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding-bottom: 12px;
+}
+
+.summary-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.summary-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.summary-value {
+    font-size: 0.92rem;
+    color: var(--text-main);
+    font-weight: 700;
+    text-align: right;
+}
+
+.summary-precio {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
+}
+
+.confirm-actions {
+    display: flex;
+    gap: 14px;
+    justify-content: flex-end;
+}
+
+/* ─── Éxito ────────────────────────────────────────── */
+.success-icon {
+    font-size: 4rem;
+    text-align: center;
+    margin-bottom: 10px;
+    animation: popIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes popIn {
+    from { transform: scale(0); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+
+#stepSuccess h2 {
+    margin-bottom: 12px;
+}
+
+#stepSuccess p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+#stepSuccess .btn {
+    display: block;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+/* ─── Navegación inferior ──────────────────────────── */
+.wizard-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border-color);
+}
+
+.btn-outline-wizard {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    padding: 12px 24px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 700;
+    font-family: inherit;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.25s ease;
+}
+
+.btn-outline-wizard:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.2);
+}
+
+/* ─── Responsive ───────────────────────────────────── */
+@media (max-width: 600px) {
+    .inscripcion-modal { padding: 30px 20px 25px; }
+    .planes-grid { grid-template-columns: repeat(2, 1fr); }
+    .confirm-actions { flex-direction: column; }
+    .confirm-actions .btn { width: 100%; text-align: center; }
+}
