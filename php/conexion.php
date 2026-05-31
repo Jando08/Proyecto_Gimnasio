@@ -1,8 +1,8 @@
 <?php
-$serverName = "127.0.0.1";
+$serverName = "localhost";
 $database = "BD_Gimnasio";
-$username = "root";
-$password = "root";
+$username = "admin_gym";
+$password = "gym2024";
 try {
     $conn = new PDO("mysql:host=$serverName;dbname=$database;charset=utf8", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
